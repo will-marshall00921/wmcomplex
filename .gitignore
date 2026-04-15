@@ -39,3 +39,19 @@
 
 # debug information files
 *.dwo
+
+# CMake files
+CMakeFiles/
+build/
+cmake_install.cmake
+CMakeCache.txt
+CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
+Doxyfile.wmcomplex_docs
+Makefile
+
+# Doxygen output
+docs/
+
+# Generated include file
+include/wm/complex/config.hpp

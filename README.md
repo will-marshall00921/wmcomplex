@@ -19,3 +19,4 @@ Option     | Description                     | Default | Dependencies
 -----------|---------------------------------|---------|--------------
 STATIC_LIB | Build as a static library       | OFF     | --
 WITH_DOCS  | Build the Doxygen documentation | ON      | Doxygen
+WITH_TESTS | Build the tests                 | ON      | --

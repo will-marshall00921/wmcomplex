@@ -4,7 +4,7 @@
 
 cmake_minimum_required (VERSION 3.14)
 
-project(WMComplex VERSION 1.1.0 LANGUAGES CXX)
+project(WMComplex VERSION 1.1.1 LANGUAGES CXX)
 
 ################################################################################
 # Configure the project
@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(STATIC_LIB "Build as a static library" OFF)
 option(WITH_DOCS "Build the Doxygen documentation" ON)
+option(WITH_TESTS "Build tests" ON)
 
 if (${STATIC_LIB})
   set(WMCOMPLEX_LIBRARY_TYPE STATIC)
@@ -74,4 +75,20 @@ if (${WITH_DOCS})
     ALL
     COMMENT "Building Docs"
   )
+endif()
+
+################################################################################
+# Build tests
+if (${WITH_TESTS})
+  include(CTest)
+  enable_testing()
+  add_subdirectory(src/tests wmcomplex_tests)
+
+  if (NOT ${STATIC_LIB})
+    add_custom_command(
+      TARGET wmcomplex POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:wmcomplex> 
+      "${CMAKE_CURRENT_BINARY_DIR}/wmcomplex_tests/$<TARGET_FILE_NAME:wmcomplex>"
+    )
+  endif()
 endif()

@@ -102,7 +102,7 @@ namespace wm {
     __m128d d_vec = _mm_set1_pd(rhs.cached_mag2()); // D
     _mm_store_pd(
       m_data,
-      _mm_div_pd(c_vec, d_vec) // E
+      _mm_permute_pd(_mm_div_pd(c_vec, d_vec), _MM_SHUFFLE2(0, 1)) // E
     ); // F
     return (*this);
   }
